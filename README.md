@@ -6,10 +6,10 @@
 
 Fails "inventory".  
   
-> Pieeja uz Internet tīklu ierobežota un ir pieejami tikai pakotņu repozitoriji  
-Tiek pieņemts, ka tiek izmantota iekšēja repozitoriju krātuve, kura "kešo" operētājsistēmu un citus attālinātos repozitorijus: https://artifactory.company.local
+> Pieeja uz Internet tīklu ierobežota un ir pieejami tikai pakotņu repozitoriji
 
-Repozitoriji, kas nāk komplektā ar operētājsistēmu tiek noņemti.  
+Tiek pieņemts, ka tiek izmantota iekšēja repozitoriju krātuve, kura "kešo" operētājsistēmu un citus attālinātos repozitorijus: https://artifactory.company.local  
+Repozitoriji, kuri nāk komplektā ar operētājsistēmu tiek noņemti.  
 Tiek pieņemts, ka kompānijā tiek izmantoti gan CentOS, gan Debian serveri.  
 <br>
 > Izmantojot ansible, veikt sekojošus uzdevumus:  
