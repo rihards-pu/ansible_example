@@ -1,0 +1,9 @@
+---
+
+zabbix_agent_version: 6.4
+
+base_url_zabbix_repo_deb: "https://artifactory.company.local/artifactory/zabbix-remote-deb"
+#base_url_zabbix_repo_deb: "https://repo.zabbix.com"
+
+base_url_zabbix_repo_yum:   "https://artifactory.company.local/artifactory/zabbix-remote-rpm"
+#base_url_zabbix_repo_yum:   "https://repo.zabbix.com/zabbix"

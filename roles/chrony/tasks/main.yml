@@ -1,0 +1,29 @@
+- name: Determining the OS
+  include_vars: "{{ item.value }}"
+  with_items:
+    - { key: "CentOS", value: "CentOS.yml" }
+    - { key: "Debian", value: "Debian.yml" }
+  when: ansible_distribution == item.key
+
+- name: Installing Chrony on CentOS
+  yum:
+    name: chrony
+    state: latest
+  when: ansible_distribution == "CentOS"
+  notify: clean yum metadata
+
+- name: Installing Chrony on Debian"
+  apt:
+    name: chrony
+    state: latest
+  when: ansible_distribution == "Debian"
+  notify: clean apt metadata
+
+- name: Placing Chrony config file
+  template:
+    src: "chrony_conf.j2"
+    dest: "{{ conf_file_location }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart chrony

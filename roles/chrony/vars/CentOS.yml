@@ -1,0 +1,2 @@
+driftfile_location: /var/lib/chrony/drift
+conf_file_location: /etc/chrony.conf

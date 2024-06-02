@@ -1,0 +1,14 @@
+---
+
+- name: restart chrony
+  systemd_service:
+    enabled: true
+    state: restarted
+    daemon_reload: true
+    name: chronyd
+
+- name: clean yum metadata
+  command: yum clean metadata
+
+- name: clean apt metadata
+  command: apt-get clean

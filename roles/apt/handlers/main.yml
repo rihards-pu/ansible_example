@@ -1,0 +1,4 @@
+---
+
+- name: clean apt metadata
+  command: apt-get clean

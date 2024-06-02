@@ -1,0 +1,7 @@
+---
+
+dependencies:
+  - role: yum
+    when: ansible_distribution == 'CentOS'
+  - role: apt
+    when: ansible_distribution == 'Debian'

@@ -1,0 +1,27 @@
+---
+
+yum_repos_default:
+  - name: company-local
+    description: "Company local YUM repository"
+    file: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/centos-local/$releasever/$basearch/"
+
+  - name: base
+    description: "CentOS-$releasever - Base"
+    file: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/centos-remote/$releasever/os/$basearch/"
+
+  - name: updates
+    description: "CentOS-$releasever - Updates"
+    file: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/centos-remote/$releasever/updates/$basearch/"
+
+  - name: extras
+    description: "CentOS-$releasever - Extras"
+    file: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/centos-remote/$releasever/extras/$basearch/"
+
+  - name: zabbix
+    description: "Zabbix repo"
+    file: zabbix-artifactory
+    baseurl: "{{ base_url_zabbix_repo_yum }}/{{ zabbix_agent_version }}/rhel/$releasever/$basearch/"

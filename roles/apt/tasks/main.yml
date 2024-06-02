@@ -1,0 +1,43 @@
+---
+
+- name: Getting default unmirrored repositories
+  find:
+    paths:
+      - /etc/apt/
+      - /etc/apt/sources.list.d
+    patterns:
+      - "debian.sources"
+      - "debian*.list"
+      - "sources.list"
+      - "mirrors"
+  register:
+    default_repositories
+
+- name: Removing default unmirrored repositories
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ default_repositories.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  notify: clean apt metadata
+
+- name: Adding Zabbix repo key
+  get_url:
+    url: "{{ zabbix_agent_repo_key_url }}"
+    dest: /etc/apt/trusted.gpg.d/zabbix-official-repo.asc
+
+- name: Add company local APT repositories from defaults
+  apt_repository:
+    repo: "{{ item.type }} {{ item.baseurl }} {{ item.Suites }} {{ item.components }}"
+    state: present
+    filename: "{{ item.filename }}"
+  loop: "{{ apt_repos_default }}"
+  loop_control:
+    label: "{{ item.filename }}.sources => {{ item.description }} - {{ item.baseurl }}"
+  notify: clean apt metadata
+
+- name: Update Apt cache
+  apt:
+    update_cache: true
+  changed_when: false

@@ -1,0 +1,33 @@
+---
+
+apt_repos_default:
+
+  - type: deb
+    components: main
+    description: "Base package for Debian"
+    filename: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/debian-remote-repository"
+    Suites:  "{{ ansible_distribution_release }}"
+
+  - type: deb
+    components: main
+    description: "Update package for Debian"
+    filename: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/debian-remote-repository"
+    Suites:  "{{ ansible_distribution_release }}-updates"
+
+  - type: deb
+    components: main
+    description: "Backport package for Debian"
+    filename: company-artifactory
+    baseurl: "https://artifactory.company.local/artifactory/debian-remote-repository"
+    Suites:  "{{ ansible_distribution_release }}-backports"
+
+  - type: deb
+    components: main
+    description: "Zabbix debian repo"
+    filename: zabbix-repo
+    baseurl: "{{ base_url_zabbix_repo_deb }}/zabbix/{{ zabbix_agent_version }}/debian"
+    Suites:  "{{ ansible_distribution_release }}"
+
+zabbix_agent_repo_key_url: "{{ base_url_zabbix_repo_deb }}/zabbix-official-repo.key"

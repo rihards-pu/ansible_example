@@ -1,0 +1,10 @@
+AAA:
+  hosts:
+    hostname1:
+    hostname4:
+
+ZZZ:
+  hosts:
+    hostname2:
+    hostname3:
+    hostname5:

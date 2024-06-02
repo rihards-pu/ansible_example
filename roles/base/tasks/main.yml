@@ -1,0 +1,19 @@
+- name: Creating user "{{ admin_user }}"
+  ansible.builtin.user:
+    name: "{{ admin_user }}"
+    shell: /bin/bash
+    groups: root
+
+- name: Adding SSH key for "{{ admin_user }}"
+  ansible.posix.authorized_key:
+    user: "{{ admin_user }}"
+    state: present
+    key: "{{ lookup('file', '~/.ssh/rihards_ansible.pub') }}"
+
+- name: Generating sudoers file for "{{ admin_user }}" from template
+  ansible.builtin.template:
+    src: "sudoers.j2"
+    dest: /etc/sudoers.d/{{ admin_user }}
+    owner: root
+    group: root
+    mode: 0644

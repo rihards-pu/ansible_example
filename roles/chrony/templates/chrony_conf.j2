@@ -1,0 +1,7 @@
+server {{ ntp_server }} iburst
+driftfile {{ driftfile_location }}
+makestep 1.0 3
+rtcsync
+logdir /var/log/chrony
+maxupdateskew 100.0
+leapsectz right/UTC

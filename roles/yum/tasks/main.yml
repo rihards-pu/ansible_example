@@ -1,0 +1,33 @@
+---
+
+- name: Getting default unmirrored repositories
+  find:
+    paths: /etc/yum.repos.d
+    patterns:
+      - "CentOS*.repo"
+  register:
+    default_repositories
+
+- name: Removing default unmirrored repositories
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ default_repositories.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  notify: clean yum metadata
+
+- name: Add company local YUM repositories from defaults
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    file: "{{ item.file }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: no
+  loop: "{{ yum_repos_default }}"
+  notify: clean yum metadata
+
+- name: Update Yum cache
+  yum:
+    update_cache: true
+  changed_when: false
