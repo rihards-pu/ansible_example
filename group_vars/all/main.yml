@@ -7,3 +7,5 @@ base_url_zabbix_repo_deb: "https://artifactory.company.local/artifactory/zabbix-
 
 base_url_zabbix_repo_yum:   "https://artifactory.company.local/artifactory/zabbix-remote-rpm"
 #base_url_zabbix_repo_yum:   "https://repo.zabbix.com/zabbix"
+
+ansible_ssh_user: administrator
