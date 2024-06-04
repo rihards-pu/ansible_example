@@ -49,6 +49,7 @@ Ja esošajiem serveriem ir pieeja tikai ar lietotājvārdu un paroli, tad var iz
 ssh-copy-id -i ~/.ssh/ansible_key.pub user@hostname
 ```
 Ceļu uz privāto sertifikātu norāda ansible.cfg failā.
+Ansible ssh user var norādīt group_vars vai palaižot ansible-playbook pievienot -u "username" parametru.
 
 Palaiž ar
 ```
